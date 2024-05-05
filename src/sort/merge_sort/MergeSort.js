@@ -1,5 +1,5 @@
 class MergeSort {
-    static execute(firstArray, secondArray) {
+    static mergeTwoArrays(firstArray, secondArray) {
         const total = firstArray.length + secondArray.length;
         const merged = new Array(total);
         let currentOfFirstArray = 0;
@@ -41,6 +41,54 @@ class MergeSort {
 
         return merged;
     }
+
+    static sortOneArray(array, start, middle, end) {
+        const total = array.length;
+        const sorted = new Array(total - start);
+        let sortedIndex = 0;
+        let firstPartIndex = start;
+        let secondPartIndex = middle;
+        
+        while (firstPartIndex < middle && secondPartIndex < end) {
+            console.log(`Comparing ${array[firstPartIndex].studentName} (${array[firstPartIndex].result}) with ${array[secondPartIndex].studentName} (${array[secondPartIndex].result})`);
+    
+            if (array[firstPartIndex].result < array[secondPartIndex].result) {
+                console.log(`-> Inserting ${array[firstPartIndex].studentName} (${array[firstPartIndex].result}) on the position ${sortedIndex}`);
+                sorted[sortedIndex] = array[firstPartIndex];
+                firstPartIndex++;
+            } else {
+                console.log(`-> Inserting ${array[secondPartIndex].studentName} (${array[secondPartIndex].result}) on the position ${sortedIndex}`);
+                sorted[sortedIndex] = array[secondPartIndex];
+                secondPartIndex++;
+            }
+            console.log("------------------------------------");
+            sortedIndex++;
+        }
+    
+        while (firstPartIndex < middle) {
+            console.log(`-> Inserting ${array[firstPartIndex].studentName} (${array[firstPartIndex].result}) on the position ${sortedIndex} because it is left over from the first part of the array`);
+            sorted[sortedIndex] = array[firstPartIndex];
+            firstPartIndex++;
+            sortedIndex++;
+        }
+    
+        while (secondPartIndex < end) {
+            console.log(`-> Inserting ${array[secondPartIndex].studentName} (${array[secondPartIndex].result}) on the position ${sortedIndex} because it is left over from the second part of the array`);
+            sorted[sortedIndex] = array[secondPartIndex];
+            secondPartIndex++;
+            sortedIndex++;
+        }
+    
+        if (start > 0) {
+            console.log("Rebuilding the original array keeping the initial object(s) not ordered (because the start is greater then 0)");
+            for (let indexOfMerged = 0; indexOfMerged < sortedIndex; indexOfMerged++) {
+                console.log(`-> Inserting ${sorted[indexOfMerged].studentName} (${sorted[indexOfMerged].result}) on the position ${start + indexOfMerged}`);
+                array[start + indexOfMerged] = sorted[indexOfMerged];
+            }
+        }
+        return array;
+    }
+    
 }
 
 module.exports = MergeSort;

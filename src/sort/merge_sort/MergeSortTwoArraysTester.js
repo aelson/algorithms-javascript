@@ -1,8 +1,8 @@
 const Util = require('../../util/Util.js');
-const MergeSort = require('./MergeSort');
+const MergeSort = require('./MergeSort.js');
 const Grade = require('../../model/Grade.js');
 
-class MergeSortTester {
+class MergeSortTwoArraysTester {
     static main() {
         const firstArray = [
             new Grade("andre", 4),
@@ -22,9 +22,9 @@ class MergeSortTester {
         Util.printGradesArray("First array: ", firstArray);
         Util.printGradesArray("Second array: ", secondArray);
 
-        const rank = MergeSort.execute(firstArray, secondArray);
+        const rank = MergeSort.mergeTwoArrays(firstArray, secondArray);
         Util.printGradesArray("Merged array: ", rank);
     }
 }
 
-MergeSortTester.main();
+MergeSortTwoArraysTester.main();
