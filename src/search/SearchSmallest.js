@@ -1,5 +1,5 @@
 class SearchSmallest {
-    static findSmallest(products, start, end) {
+    static execute(products, start, end) {
         let smallest = start;
         for (let atual = start; atual <= end; atual++) {
             if (products[atual].price < products[smallest].price) {
