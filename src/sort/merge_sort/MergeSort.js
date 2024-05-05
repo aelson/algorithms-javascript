@@ -1,4 +1,22 @@
 class MergeSort {
+    static addRemainingElementsToEndOfArray(array, arrayEnd, arrayIndex, merged, mergedArrayIndex) {
+        while (arrayIndex < arrayEnd) {
+            console.log(`-> Inserting ${array[arrayIndex].studentName} (${array[arrayIndex].result}) on the position ${mergedArrayIndex} because it is left over from the first array`);
+            merged[mergedArrayIndex] = array[arrayIndex];
+            arrayIndex++;
+            mergedArrayIndex++;
+        }
+        return mergedArrayIndex;
+    }
+
+    static rebuildArray(array, start, sortedIndex, sorted) {
+        console.log("Rebuilding the original array");
+        for (let indexOfMerged = 0; indexOfMerged < sortedIndex; indexOfMerged++) {
+            console.log(`-> Inserting ${sorted[indexOfMerged].studentName} (${sorted[indexOfMerged].result}) on the position ${indexOfMerged}`);
+            array[start + indexOfMerged] = sorted[indexOfMerged];
+        }
+    }
+
     static mergeTwoArrays(firstArray, secondArray) {
         const total = firstArray.length + secondArray.length;
         const merged = new Array(total);
@@ -25,19 +43,8 @@ class MergeSort {
             currentOfMerged++;
         }
 
-        while (currentOfFirstArray < firstArray.length) {
-            console.log(`-> Inserting ${firstArray[currentOfFirstArray].studentName} (${firstArray[currentOfFirstArray].result}) on the position ${currentOfMerged} because it is left over from the first array`);
-            merged[currentOfMerged] = firstArray[currentOfFirstArray];
-            currentOfFirstArray++;
-            currentOfMerged++;
-        }
-
-        while (currentOfSecondArray < secondArray.length) {
-            console.log(`-> Inserting ${secondArray[currentOfSecondArray].studentName} (${secondArray[currentOfSecondArray].result}) on the position ${currentOfMerged} because it is left over from the second array`);
-            merged[currentOfMerged] = secondArray[currentOfSecondArray];
-            currentOfSecondArray++;
-            currentOfMerged++;
-        }
+        currentOfMerged = this.addRemainingElementsToEndOfArray(firstArray, firstArray.length, currentOfFirstArray, merged, currentOfMerged);
+        this.addRemainingElementsToEndOfArray(secondArray, secondArray.length, currentOfSecondArray, merged, currentOfMerged);
 
         return merged;
     }
@@ -65,30 +72,13 @@ class MergeSort {
             sortedIndex++;
         }
     
-        while (firstPartIndex < middle) {
-            console.log(`-> Inserting ${array[firstPartIndex].studentName} (${array[firstPartIndex].result}) on the position ${sortedIndex} because it is left over from the first part of the array`);
-            sorted[sortedIndex] = array[firstPartIndex];
-            firstPartIndex++;
-            sortedIndex++;
-        }
-    
-        while (secondPartIndex < end) {
-            console.log(`-> Inserting ${array[secondPartIndex].studentName} (${array[secondPartIndex].result}) on the position ${sortedIndex} because it is left over from the second part of the array`);
-            sorted[sortedIndex] = array[secondPartIndex];
-            secondPartIndex++;
-            sortedIndex++;
-        }
-    
-        if (start > 0) {
-            console.log("Rebuilding the original array keeping the initial object(s) not ordered (because the start is greater then 0)");
-            for (let indexOfMerged = 0; indexOfMerged < sortedIndex; indexOfMerged++) {
-                console.log(`-> Inserting ${sorted[indexOfMerged].studentName} (${sorted[indexOfMerged].result}) on the position ${start + indexOfMerged}`);
-                array[start + indexOfMerged] = sorted[indexOfMerged];
-            }
+        sortedIndex = this.addRemainingElementsToEndOfArray(array, middle, firstPartIndex, sorted, sortedIndex);
+        this.addRemainingElementsToEndOfArray(array, end, secondPartIndex, sorted, sortedIndex);
+        if (start + end < array.length) {
+            this.rebuildArray(array, start, sortedIndex, sorted);
         }
         return array;
-    }
-    
+    }   
 }
 
 module.exports = MergeSort;
