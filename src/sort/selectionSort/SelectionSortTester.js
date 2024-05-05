@@ -1,4 +1,4 @@
-const Product = require('../model/Product.js');
+const Product = require('../../model/Product.js');
 const SelectionSort = require('./SelectionSort.js');
 
 class SelectionSortTester {
