@@ -1,3 +1,4 @@
+const Product = require('../model/Grade.js');
 const Product = require('../model/Product.js');
 
 class Util {
@@ -15,10 +16,17 @@ class Util {
         console.log("------------------------------------");
     }
 
-    static printArray(arrayTitle, products) {
+    static printProductsArray(arrayTitle, products) {
         console.log(arrayTitle);
         for (let product of products) {
             console.log(product.name + " costs " + product.price);
+        }
+    }
+
+    static printGradesArray(arrayTitle, grades) {
+        console.log(arrayTitle);
+        for (let grade of grades) {
+            console.log(grade.studentName + " " + grade.result);
         }
     }
 

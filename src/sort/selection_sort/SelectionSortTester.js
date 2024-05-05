@@ -10,17 +10,11 @@ class SelectionSortTester {
             new Product("Honda Civic", 30000),
             new Product("Tesla Model 3", 50000),
         ];
-        console.log("Original array: ");
-        for (let product of products) {
-            console.log(product.name + " costs " + product.price);
-        }
+        Util.printProductsArray("Original array: ", products);
 
         SelectionSort.execute(products, products.length);
 
-        console.log("Sorted array: ");
-        for (let product of products) {
-            console.log(product.name+ " costs " + product.price);
-        }
+        Util.printProductsArray("Sorted array: ", products);
     }
 }
 
