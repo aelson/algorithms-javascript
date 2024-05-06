@@ -1,7 +1,7 @@
 const Product = require('../model/Product.js');
-const SearchSmallest = require('./SearchSmallest.js');
+const FindSmallest = require('./FindSmallest.js');
 
-class SearchSmallestTester {
+class FindSmallestTester {
     static main() {
         const products = [
             new Product("Tesla Model 3", 50000),
@@ -11,10 +11,10 @@ class SearchSmallestTester {
             new Product("Audi Q5", 45000)
         ];
 
-        const smallest = SearchSmallest.execute(products, 0, 4);
+        const smallest = FindSmallest.execute(products, 0, 4);
         console.log(smallest);
         console.log("The car " + products[smallest].name + " costs " + products[smallest].price);
     }
 }
 
-SearchSmallestTester.main();
+FindSmallestTester.main();

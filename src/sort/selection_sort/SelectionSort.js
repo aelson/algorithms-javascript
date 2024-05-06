@@ -1,12 +1,12 @@
 const Product = require('../../model/Product.js');
-const SearchSmallest = require('../../search/SearchSmallest.js');
+const FindSmallest = require('../../search/FindSmallest.js');
 
 class SelectionSort {
     static execute(products, numberOfElements) {
         for (let current = 0; current < numberOfElements - 1; current++) {
             console.log("I am in the element " + current);
 
-            let smallest = SearchSmallest.execute(products, current, products.length - 1);
+            let smallest = FindSmallest.execute(products, current, products.length - 1);
 
             console.log("<-> Swapping element " + current + " with element " + smallest);
 

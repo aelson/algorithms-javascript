@@ -1,4 +1,4 @@
-class SearchSmallest {
+class FindSmallest {
     static execute(products, start, end) {
         let smallest = start;
         for (let atual = start; atual <= end; atual++) {
@@ -10,4 +10,4 @@ class SearchSmallest {
     }
 }
 
-module.exports = SearchSmallest;
+module.exports = FindSmallest;
