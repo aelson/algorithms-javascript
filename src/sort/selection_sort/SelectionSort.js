@@ -1,5 +1,4 @@
-const Product = require('../../model/Product.js');
-const FindSmallest = require('../../search/FindSmallest.js');
+const FindSmallest = require('../../search/find_smallest/FindSmallest.js');
 
 class SelectionSort {
     static execute(products, numberOfElements) {
