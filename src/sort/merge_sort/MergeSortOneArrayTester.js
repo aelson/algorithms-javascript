@@ -18,7 +18,7 @@ class MergeSortOneArrayTester {
 
         Util.printGradesArray("Grades array: ", grades);
 
-        const rank = MergeSort.sortOneArray(grades, 0, 4, grades.length);
+        const rank = MergeSort.sortOneArrayWithTwoOrderedHalfs(grades, 0, 4, grades.length);
         Util.printGradesArray("Sorted array: ", rank);
     }
 }

@@ -1,22 +1,14 @@
 class MergeSort {
-    static addRemainingElementsToEndOfArray(array, arrayEnd, arrayIndex, merged, mergedArrayIndex) {
-        while (arrayIndex < arrayEnd) {
-            console.log(`-> Inserting ${array[arrayIndex].studentName} (${array[arrayIndex].result}) on the position ${mergedArrayIndex} because it is left over from the first array`);
-            merged[mergedArrayIndex] = array[arrayIndex];
-            arrayIndex++;
-            mergedArrayIndex++;
-        }
-        return mergedArrayIndex;
-    }
-
-    static rebuildArray(array, start, sortedIndex, sorted) {
-        console.log("Rebuilding the original array");
-        for (let indexOfMerged = 0; indexOfMerged < sortedIndex; indexOfMerged++) {
-            console.log(`-> Inserting ${sorted[indexOfMerged].studentName} (${sorted[indexOfMerged].result}) on the position ${indexOfMerged}`);
-            array[start + indexOfMerged] = sorted[indexOfMerged];
+    static mergeSort(grades, start, end) {
+        const numberOfElements = end - start;
+        if (numberOfElements > 1) {
+            const middle = Math.floor((start + end) / 2);
+            this.mergeSort(grades, start, middle);
+            this.mergeSort(grades, middle, end);
+            this.sortOneArrayWithTwoOrderedHalfs(grades, start, middle, end);
         }
     }
-
+    
     static mergeTwoArrays(firstArray, secondArray) {
         const total = firstArray.length + secondArray.length;
         const merged = new Array(total);
@@ -49,7 +41,7 @@ class MergeSort {
         return merged;
     }
 
-    static sortOneArray(array, start, middle, end) {
+    static sortOneArrayWithTwoOrderedHalfs(array, start, middle, end) {
         const total = array.length;
         const sorted = new Array(total - start);
         let sortedIndex = 0;
@@ -74,11 +66,27 @@ class MergeSort {
     
         sortedIndex = this.addRemainingElementsToEndOfArray(array, middle, firstPartIndex, sorted, sortedIndex);
         this.addRemainingElementsToEndOfArray(array, end, secondPartIndex, sorted, sortedIndex);
-        if (start + end < array.length) {
-            this.rebuildArray(array, start, sortedIndex, sorted);
-        }
+        this.rebuildArray(array, start, sortedIndex, sorted);
         return array;
     }   
+
+    static addRemainingElementsToEndOfArray(array, arrayEnd, arrayIndex, merged, mergedArrayIndex) {
+        while (arrayIndex < arrayEnd) {
+            console.log(`-> Inserting ${array[arrayIndex].studentName} (${array[arrayIndex].result}) on the position ${mergedArrayIndex} because it is left over from the first array`);
+            merged[mergedArrayIndex] = array[arrayIndex];
+            arrayIndex++;
+            mergedArrayIndex++;
+        }
+        return mergedArrayIndex;
+    }
+
+    static rebuildArray(array, start, sortedIndex, sorted) {
+        console.log("Rebuilding the original array");
+        for (let indexOfMerged = 0; indexOfMerged < sortedIndex; indexOfMerged++) {
+            console.log(`-> Inserting ${sorted[indexOfMerged].studentName} (${sorted[indexOfMerged].result}) on the position ${indexOfMerged}`);
+            array[start + indexOfMerged] = sorted[indexOfMerged];
+        }
+    }
 }
 
 module.exports = MergeSort;
