@@ -1,5 +1,6 @@
 const Product = require('../../model/Product.js');
 const SelectionSort = require('./SelectionSort.js');
+const Util = require('../../util/Util.js');
 
 class SelectionSortTester {
     static main() {

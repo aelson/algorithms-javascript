@@ -1,5 +1,5 @@
 const Util = require('../../util/Util.js');
-const MergeSort = require('./MergeSort');
+const MergeSort = require('./MergeSort.js');
 const Grade = require('../../model/Grade.js');
 
 class MergeSortOneArrayTester {

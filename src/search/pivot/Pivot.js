@@ -1,15 +1,21 @@
+const Util = require('../../util/Util.js');
+
 class Pivot {
-    static execute(grades, start, end) {
+    static execute(grades, end) {
         const pivot = grades[end - 1];
         let lowerValuesCount = 0;
         for (let index = 0; index < end - 1; index++) {
             const current = grades[index];
-            if (current.result <= pivot.result) {
-                Pivot.swap(grades, index, lowerValuesCount);
+            if (current.result < pivot.result) {
+                if (index != lowerValuesCount) {
+                    Util.swap(grades, index, lowerValuesCount);
+                }
                 lowerValuesCount++;
             }
         }
-        Pivot.swap(grades, end - 1, lowerValuesCount);
+        if (end - 1 != lowerValuesCount) {
+            Util.swap(grades, end - 1, lowerValuesCount);
+        }
         return lowerValuesCount;
     }
 

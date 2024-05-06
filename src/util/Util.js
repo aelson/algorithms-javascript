@@ -1,16 +1,17 @@
 const Product = require('../model/Product.js');
+const Grade = require('../model/Grade.js');
 
 class Util {
-    static swap(products, first, second) {
+    static swap(array, first, second) {
         console.log("<-> Swapping element " + first + " with " + second);
 
-        let firstProduct = products[first];
-        let secondProduct = products[second];
+        let firstObject = array[first];
+        let secondObject = array[second];
 
-        console.log("<-> Swapping product " + firstProduct.name + " with " + secondProduct.name);
+        console.log("<-> Swapping object " + firstObject + " with " + secondObject);
 
-        products[first] = secondProduct;
-        products[second] = firstProduct;
+        array[first] = secondObject;
+        array[second] = firstObject;
 
         console.log("------------------------------------");
     }
@@ -38,6 +39,21 @@ class Util {
             new Product("Tesla Model 3", 50000),
         ];
     }
+
+    static getUnsortedGrades(specialGrade) {
+        return [
+            new Grade("andre", 4),
+            new Grade("carlos", 8.5),
+            new Grade("ana", 10),
+            new Grade("jonas", 3),
+            new Grade("juliana", 6.7),
+            new Grade("lucia", 9.3),
+            new Grade("paulo", 9),
+            new Grade("mariana", 5),
+            specialGrade,
+        ];
+    }
+    
 }
 
 module.exports = Util;
